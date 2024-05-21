@@ -1,0 +1,14 @@
+<div class="container p-3 bg-light">
+  <h2> My Tasks </h2>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= link_to task_path(task.id, task: {completed: !task.completed}), data: {turbo_method: :patch}, class: "text-decoration-none" do %>
+         <i class="text-decoration-none fa-regular fa-square<%= task.completed? ? '-check' : '' %>"></i>
+      <% end %>
+      <%= link_to task.title, task_path(task.id), class: "text-decoration-none" %>
+    </li>
+  <% end %>
+  <div class="container p-3 bg-light mb-2">
+    <%= link_to "Add a new task", new_task_path %>
+  </div>
+</div>
